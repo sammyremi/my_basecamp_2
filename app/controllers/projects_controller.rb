@@ -1,13 +1,19 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: %i[ show edit update destroy ]
+  before_action :correct_user, only: %i[ edit update destroy ]
 
   # GET /projects or /projects.json
   def index
     @projects = Project.all
+    
   end
 
   # GET /projects/1 or /projects/1.json
   def show
+
+    @project = Project.find(params[:id])
+    @documents = @project.documents
+
   end
 
   # GET /projects/new
@@ -17,6 +23,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1/edit
   def edit
+
   end
 
   # POST /projects or /projects.json
@@ -63,8 +70,21 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
+    def correct_user
+      if !current_user
+        redirect_to new_user_session_path, notice: "Can't Perform Action"
+      elsif current_user
+        if current_user.id != set_project.user_id
+          redirect_to projects_path, notice: "Can't Perform Action"
+        end
+      end
+
+    end
+
     # Only allow a list of trusted parameters through.
     def project_params
-      params.require(:project).permit(:title, :description, :user_id)
+      params.require(:project).permit(:name, :description, :user_id)
     end
+
+
 end

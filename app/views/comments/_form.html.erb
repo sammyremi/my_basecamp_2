@@ -1,0 +1,6 @@
+<form action="/projects/:project_id/posts/:post_id/comments" method="post">
+  <label for="content">Reply:</label><br>
+  <input type="hidden" id="user_id" value=<%= current_user.id %>
+  <input type="text" id="content" name="content">
+  <input type="submit" value="Send">
+</form>

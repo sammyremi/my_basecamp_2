@@ -3,12 +3,23 @@
 <h1>Projects</h1>
 
 <div id="projects">
-  <% @projects.each do |project| %>
-    <%= render project %>
-    <p>
-      <%= link_to "Show this project", project %>
-    </p>
-  <% end %>
-</div>
+<% if !current_user %>
+    <%= "kindly login" %>
+    </br>
+    </br>
+    <%= link_to "Login",  new_user_session_path, class:"btn btn-primary"%>
+<% else %>
+    <% @projects.each do |project| %>
+      <% if current_user.id == project.user_id %>
+        <%= render project %>
+        <p>
+          <%= link_to "Show this project", project %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+  <%= link_to "New project", new_project_path %>
+<% end %>
 
-<%= link_to "New project", new_project_path %>
+
+

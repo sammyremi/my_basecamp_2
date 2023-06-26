@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-body">
+  <%= form_for [@project, @discussion, @comment], url: new_project_discussion_comment_path(@project, @discussion, @comment) do |f| %>
+      <% f.hidden_field :parent_id %>
+      <div class="form-group">
+        <%= f.label 'Add new Message' %>
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
+      <br/>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      <%= f.submit 'Submit', class: 'btn btn-primary' %>
+      <%= link_to 'Cancel', project_path(@project), class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

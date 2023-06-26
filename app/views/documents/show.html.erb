@@ -1,0 +1,13 @@
+<h1>Document Details</h1>
+<p>Filename: <%= @document.filename %></p>
+<p>Content Type: <%= @document.content_type %></p>
+<% if @document.image? %>
+  <h2>Image Preview</h2>
+  <%= image_tag @document.url, class: "document-preview" %>
+<% elsif @document.text? %>
+  <h2>Text Content</h2>
+  <pre><%= @document.text_content %></pre>
+<% else %>
+  <h2>File Download</h2>
+  <%= link_to "Download", @document.url, class: "btn btn-primary" %>
+<% end %>

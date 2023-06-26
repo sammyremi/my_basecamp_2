@@ -2,10 +2,10 @@
 
 one:
   title: MyString
-  project: one
   user: one
+  project: one
 
 two:
   title: MyString
-  project: two
   user: two
+  project: two

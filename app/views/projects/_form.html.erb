@@ -11,24 +11,23 @@
     </div>
   <% end %>
 
-  <% if current_user %>
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
 
-    <div>
-      <%= form.label :title, style: "display: block" %>
-      <%= form.text_field :title %>
-    </div>
-
-    <div>
-      <%= form.label :description, style: "display: block" %>
-      <%= form.text_area :description %>
-    </div>
-
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+  
+  <% if signed_in? %>
     <div>
       <%= form.hidden_field :user_id, value: current_user.id %>
     </div>
+  <%end%>
 
-    <div>
-      <%= form.submit %>
-    </div>
-    <% end %>
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>

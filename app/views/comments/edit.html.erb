@@ -1,0 +1,22 @@
+<figure class="text-center">
+    <blockquote class="blockquote">
+      <h1 class="fw-bold">Edit</h1>
+      <button type="button" class="btn btn-light btn-sm" disabled>
+        <%= current_user.email %>
+      </button>
+    </blockquote>
+  </figure>
+  <div class="card">
+  <div class="card-body">
+  <%= form_for [@project, @post, @comment], url: project_post_comment_path(@project, @post, @comment) do |f| %>
+    <div class="form-group">
+      <% f.label :content %>
+      <%= f.text_area :content, name: 'comment[content]', class: "form-control" %>
+    </div><br/>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <%= f.submit 'Update Message', class: 'btn btn-primary' %>
+    <%= link_to 'Cancel', project_path(@project), class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+  </div>
+  </div>
